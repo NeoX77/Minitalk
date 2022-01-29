@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 13:50:35 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:16:49 by wdebotte         ###   ########.fr       */
+/*   Created: 2021/11/24 12:32:32 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/01/08 18:47:42 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../../headers/libft.h"
 
-int	main(int args, char **argv)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	(void)argv;
-	if (args != 3)
+	size_t	n;
+
+	if (size > 0)
 	{
-		ft_putstr("Usage: ./client \"pid\" \"message\"");
-		exit(EXIT_FAILURE);
+		n = -1;
+		while (src[++n] != '\0' && n < size - 1)
+			dst[n] = src[n];
+		dst[n] = '\0';
 	}
-	exit(EXIT_SUCCESS);
+	return (ft_strlen(src));
 }

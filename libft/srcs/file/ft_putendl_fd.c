@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 13:50:35 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:16:49 by wdebotte         ###   ########.fr       */
+/*   Created: 2021/11/29 15:08:01 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/01/08 18:46:58 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../../headers/libft.h"
 
-int	main(int args, char **argv)
+void	ft_putendl_fd(char *s, int fd)
 {
-	(void)argv;
-	if (args != 3)
-	{
-		ft_putstr("Usage: ./client \"pid\" \"message\"");
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
+	if (s == NULL)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 13:50:35 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:16:49 by wdebotte         ###   ########.fr       */
+/*   Created: 2021/12/01 12:09:36 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/01/08 18:45:41 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../../headers/libft.h"
 
-int	main(int args, char **argv)
+t_list	*ft_lstlast(t_list *lst)
 {
-	(void)argv;
-	if (args != 3)
-	{
-		ft_putstr("Usage: ./client \"pid\" \"message\"");
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

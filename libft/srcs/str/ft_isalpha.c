@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 13:50:35 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:16:49 by wdebotte         ###   ########.fr       */
+/*   Created: 2021/11/24 12:31:27 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/01/08 18:44:29 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../../headers/libft.h"
 
-int	main(int args, char **argv)
+int	ft_isalpha(int c)
 {
-	(void)argv;
-	if (args != 3)
-	{
-		ft_putstr("Usage: ./client \"pid\" \"message\"");
-		exit(EXIT_FAILURE);
-	}
-	exit(EXIT_SUCCESS);
+	if ((c >= 'A' && c <= 'Z')
+		|| (c >= 'a' && c <= 'z'))
+		return (c);
+	return (0);
 }

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/25 13:50:35 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:16:49 by wdebotte         ###   ########.fr       */
+/*   Created: 2021/11/24 14:05:04 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/01/08 18:46:05 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minitalk.h"
+#include "../../headers/libft.h"
 
-int	main(int args, char **argv)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	(void)argv;
-	if (args != 3)
+	unsigned char	*buffer_s;
+
+	buffer_s = (unsigned char *)s;
+	while (n-- > 0)
 	{
-		ft_putstr("Usage: ./client \"pid\" \"message\"");
-		exit(EXIT_FAILURE);
+		if (*buffer_s == (unsigned char)c)
+			return (buffer_s);
+		buffer_s++;
 	}
-	exit(EXIT_SUCCESS);
+	return (NULL);
 }
