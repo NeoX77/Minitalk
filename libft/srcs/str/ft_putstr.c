@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:42:46 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/08 20:05:33 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/01/29 17:44:27 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,4 @@ void	ft_putstr(const char *str)
 	if (str == NULL)
 		return ;
 	write(1, str, ft_strlen(str));
-	ft_putchar('\n');
 }
