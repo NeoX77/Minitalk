@@ -6,7 +6,7 @@
 #    By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 13:51:08 by wdebotte          #+#    #+#              #
-#    Updated: 2022/01/29 17:40:00 by wdebotte         ###   ########.fr        #
+#    Updated: 2022/01/31 10:17:09 by wdebotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ program ${CYAN}..."
 				${RM} ${NAME_SERVER}
 				${RM} ${NAME_CLIENT}
 
-re:			fclean re
+re:			fclean all
 
 norminette:
 				@echo "${PREFIX}Checking norminette for ${GREEN}.c ${CYAN}files ..."
