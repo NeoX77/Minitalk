@@ -6,11 +6,12 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 16:19:06 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/02 13:43:39 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:57:19 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
+#include <stdlib.h>
 
 //Know how many chars takes n
 static int	ft_sizebuffer(long int n, int basesize)

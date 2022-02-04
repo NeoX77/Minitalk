@@ -6,11 +6,12 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 19:41:17 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/08 19:44:44 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:03:16 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
+#include <unistd.h>
 
 void	ft_putchar(char c)
 {

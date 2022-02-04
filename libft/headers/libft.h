@@ -6,7 +6,7 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 12:33:55 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/31 16:44:41 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:02:52 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,6 @@
 
 # include "ft_printf.h"
 # include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
 
 typedef struct s_list
 {

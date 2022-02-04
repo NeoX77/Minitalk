@@ -6,11 +6,12 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 14:45:24 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/08 18:47:17 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:59:50 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
+#include <stdlib.h>
 
 static char	**ft_freetab(char **tab)
 {

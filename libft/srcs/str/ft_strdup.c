@@ -6,11 +6,12 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/24 16:20:36 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/08 18:47:27 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 18:00:04 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/libft.h"
+#include <stdlib.h>
 
 char	*ft_strdup(const char *s)
 {

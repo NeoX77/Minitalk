@@ -6,7 +6,7 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 16:13:07 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/11 13:15:28 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/04 17:56:23 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
-# include <unistd.h>
-# include <stdarg.h>
 
 # define HEXA "0123456789abcdef"
 
