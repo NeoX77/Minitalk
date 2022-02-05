@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:45:49 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/04 19:22:59 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/05 19:03:55 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ static void	ft_send_char_to_server(char c_char, int i_pid)
 		else if (s_binary[i] == '1')
 			kill(i_pid, SIGUSR2);
 		i++;
-		usleep(500);
+		usleep(250);
 	}
-	ft_printf("%s | %c\n", s_binary, ft_atoi_base(s_binary, "01"));
 	free(s_binary);
 }
 
