@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:45:49 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/05 19:03:55 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/06 19:23:45 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,18 @@
 
 static void	ft_send_char_to_server(char c_char, int i_pid)
 {
-	int		i;
-	char	*s_tmp;
-	char	*s_binary;
+	int	byte;
 
-	s_binary = ft_itoa_base(c_char, "01");
-	while (ft_strlen(s_binary) < 7)
+	byte = 7;
+	while (byte >= 0)
 	{
-		s_tmp = s_binary;
-		s_binary = ft_strjoin("0", s_tmp);
-		free(s_tmp);
-	}
-	i = 0;
-	while (s_binary[i] != '\0')
-	{
-		if (s_binary[i] == '0')
-			kill(i_pid, SIGUSR1);
-		else if (s_binary[i] == '1')
+		if (c_char >> byte & 1)
 			kill(i_pid, SIGUSR2);
-		i++;
-		usleep(250);
+		else
+			kill(i_pid, SIGUSR1);
+		byte--;
+		usleep(100);
 	}
-	free(s_binary);
 }
 
 int	main(int args, char **argv)
