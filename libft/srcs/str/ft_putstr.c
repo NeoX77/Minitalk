@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "libft.h"
 #include <unistd.h>
 
 void	ft_putstr(const char *str)

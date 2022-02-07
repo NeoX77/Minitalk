@@ -6,11 +6,11 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:45:49 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/06 19:23:45 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:41:56 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/headers/libft.h"
+#include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <signal.h>
@@ -27,7 +27,7 @@ static void	ft_send_char_to_server(char c_char, int i_pid)
 		else
 			kill(i_pid, SIGUSR1);
 		byte--;
-		usleep(100);
+		usleep(1000);
 	}
 }
 

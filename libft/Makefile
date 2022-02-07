@@ -6,7 +6,7 @@
 #    By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 08:31:56 by wdebotte          #+#    #+#              #
-#    Updated: 2022/02/02 13:44:05 by wdebotte         ###   ########.fr        #
+#    Updated: 2022/02/07 10:52:02 by wdebotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,12 +83,12 @@ HEADERS		= headers/libft.h headers/ft_printf.h
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
+INCS		= -Iincludes
 
 RM			= rm -rf
 
 NORM		= norminette
-
-
+FLAGC		= -R CheckForbiddenSourceHeader
 FLAGH		= -R CheckDefine
 
 all:		strcompile ${NAME}
@@ -97,7 +97,7 @@ strcompile:
 				@echo "${PREFIX} Compiling all ${GREEN}.c ${CYAN}to ${GREEN}.o ${CYAN}..."
 
 .c.o:
-				${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} -c $< -o ${<:.c=.o} ${INCS}
 
 ${NAME}:	${OBJS}
 				@echo "${PREFIX} Making ${GREEN}${NAME} ${CYAN}library ..."

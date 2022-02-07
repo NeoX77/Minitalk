@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/ft_printf.h"
+#include "ft_printf.h"
 #include <stdarg.h>
 
 static int	is_valid_arg(char c)

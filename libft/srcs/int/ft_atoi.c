@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "libft.h"
 
 static int	ft_is_whitespace(char c)
 {

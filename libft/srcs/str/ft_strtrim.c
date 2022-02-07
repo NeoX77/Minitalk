@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 static int	ft_is_charset(char c, char const *charset)

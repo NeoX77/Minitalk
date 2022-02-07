@@ -6,7 +6,7 @@
 #    By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 13:51:08 by wdebotte          #+#    #+#              #
-#    Updated: 2022/01/31 10:17:09 by wdebotte         ###   ########.fr        #
+#    Updated: 2022/02/07 10:48:53 by wdebotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ OBJS_CLIENT	= ${SRCS_CLIENT:.c=.o}
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
+INCS		= -Ilibft/includes/
 
 RM			= rm -rf
 MAKE		= make -C
@@ -38,13 +39,13 @@ LIBFT		= -L ${PATHLIBFT} -lft
 
 .c.o:
 				@echo "${PREFIX}Compiling all ${GREEN}.c ${CYAN}to ${GREEN}.o ${CYAN}..."
-				${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+				${CC} ${CFLAGS} -c $< -o ${<:.c=.o} $(INCS)
 
 all:		${OBJS_SERVER} ${OBJS_CLIENT}
 				${MAKE} ${PATHLIBFT} 
 				@echo "${PREFIX}Compiling ${GREEN}minitalk Program ${CYAN}..."
-				${CC} ${OBJS_SERVER} ${LIBFT} -o ${NAME_SERVER}
-				${CC} ${OBJS_CLIENT} ${LIBFT} -o ${NAME_CLIENT}
+				${CC} ${OBJS_SERVER} ${LIBFT} -o ${NAME_SERVER} $(INCS)
+				${CC} ${OBJS_CLIENT} ${LIBFT} -o ${NAME_CLIENT} $(INCS)
 
 clean:
 				@echo "${PREFIX}Removing ${GREEN}Objects ${CYAN}files ..."

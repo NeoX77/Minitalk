@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../headers/libft.h"
+#include "libft.h"
 
 //ext must be preceded by '.'
 int	is_ext_correct(const char *file, const char *ext)
