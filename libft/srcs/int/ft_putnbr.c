@@ -6,18 +6,27 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 17:37:02 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/07 12:48:29 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/07 15:47:58 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
 void	ft_putnbr(int nbr)
 {
-	char	*s_nbr;
+	long int	li_nbr;
 
-	s_nbr = ft_itoa(nbr);
-	ft_putstr(s_nbr);
-	free(s_nbr);
+	li_nbr = nbr;
+	if (li_nbr < 0)
+	{
+		li_nbr = -li_nbr;
+		ft_putchar('-');
+	}
+	if (li_nbr >= 10)
+	{
+		ft_putnbr(li_nbr / 10);
+		ft_putchar(li_nbr % 10 + 48);
+	}
+	else
+		ft_putchar(li_nbr + 48);
 }
