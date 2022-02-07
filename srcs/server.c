@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:16 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/07 10:55:34 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/07 17:20:00 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	get_message(int i_signum)
 		if (uc_char == 0)
 		{
 			ft_putstr(s_buffer);
+			ft_putchar('\n');
 			free(s_buffer);
 			s_buffer = 0;
 		}
