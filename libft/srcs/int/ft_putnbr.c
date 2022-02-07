@@ -6,11 +6,12 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/29 17:37:02 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/01/29 17:37:45 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/07 12:48:29 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
 void	ft_putnbr(int nbr)
 {
@@ -18,4 +19,5 @@ void	ft_putnbr(int nbr)
 
 	s_nbr = ft_itoa(nbr);
 	ft_putstr(s_nbr);
+	free(s_nbr);
 }

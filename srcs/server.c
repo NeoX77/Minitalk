@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:16 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/07 10:42:09 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/07 10:55:34 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,6 @@ static void	get_message(int i_signum)
 	else
 		uc_char <<= 1;
 }
-
-/*static void	get_message(int i_signum)
-{
-	static int				i_bytes = 0;
-	static unsigned char	uc_char = 0;
-
-	uc_char |= (i_signum == SIGUSR2);
-	if (++i_bytes == 8)
-	{
-		i_bytes = 0;
-		ft_putchar(uc_char);
-		uc_char = 0;
-	}
-	else
-		uc_char <<= 1;
-}*/
 
 int	main(void)
 {
