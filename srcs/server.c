@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 18:16:16 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/07 17:20:00 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:10:50 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,57 +15,63 @@
 #include <stdlib.h>
 #include <signal.h>
 
-static char	*ft_fill_buffer(char *s_buffer, char c_char)
+static char	*ft_fill_buffer(char *buffer, char c)
 {
-	char	*s_tmp;
+	char	*tmp;
 	char	c_tmp[2];
 
-	if (s_buffer == NULL)
+	if (buffer == NULL)
 	{
-		s_buffer = malloc(sizeof(char));
-		if (s_buffer == NULL)
+		buffer = malloc(sizeof(char));
+		if (buffer == NULL)
 			return (NULL);
-		s_buffer[0] = '\0';
+		buffer[0] = '\0';
 	}
-	c_tmp[0] = c_char;
+	c_tmp[0] = c;
 	c_tmp[1] = '\0';
-	s_tmp = s_buffer;
-	s_buffer = ft_strjoin(s_tmp, c_tmp);
-	free(s_tmp);
-	return (s_buffer);
+	tmp = buffer;
+	buffer = ft_strjoin(tmp, c_tmp);
+	free(tmp);
+	return (buffer);
 }
 
-static void	get_message(int i_signum)
+static void	get_message(int signum, siginfo_t *info, void *context)
 {
-	static int				i_bytes = 0;
-	static unsigned char	uc_char = 0;
-	static char				*s_buffer;
+	static int				bytes = 0;
+	static unsigned char	uc = 0;
+	static char				*buffer;
 
-	uc_char |= (i_signum == SIGUSR2);
-	if (++i_bytes == 8)
+	(void)context;
+	uc |= (signum == SIGUSR2);
+	if (++bytes == 8)
 	{
-		i_bytes = 0;
-		s_buffer = ft_fill_buffer(s_buffer, uc_char);
-		if (uc_char == 0)
+		bytes = 0;
+		buffer = ft_fill_buffer(buffer, uc);
+		if (uc == 0)
 		{
-			ft_putstr(s_buffer);
-			ft_putchar('\n');
-			free(s_buffer);
-			s_buffer = 0;
+			ft_printf("%s\n", buffer);
+			free(buffer);
+			buffer = 0;
+			if ((kill(info->si_pid, SIGUSR2)) == -1)
+				exit(EXIT_FAILURE);
 		}
-		uc_char = 0;
+		uc = 0;
 	}
 	else
-		uc_char <<= 1;
+		uc <<= 1;
+	if ((kill(info->si_pid, SIGUSR1)) == -1)
+		exit(EXIT_FAILURE);
 }
 
 int	main(void)
 {
-	ft_putstr("The pid is : ");
-	ft_putnbr(getpid());
-	ft_putchar('\n');
-	signal(SIGUSR1, get_message);
-	signal(SIGUSR2, get_message);
+	struct sigaction	s_action;
+
+	ft_printf("Hi ! My pid is : %i. Try to send me a message !\n", getpid());
+	s_action.sa_sigaction = &get_message;
+	s_action.sa_flags = SA_SIGINFO;
+	sigaction(SIGUSR1, &s_action, NULL);
+	sigaction(SIGUSR2, &s_action, NULL);
 	while (1)
 		pause();
 	return (0);

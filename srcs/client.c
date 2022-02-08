@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/04 17:45:49 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/07 10:41:56 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/08 11:21:05 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,41 +15,60 @@
 #include <stdlib.h>
 #include <signal.h>
 
-static void	ft_send_char_to_server(char c_char, int i_pid)
+static void	handler(int signum)
+{
+	if (signum == SIGUSR2)
+	{
+		ft_printf("The message has been received !\n");
+		exit(EXIT_SUCCESS);
+	}
+	else
+		return ;
+}
+
+static void	ft_send_char_to_server(char c, int serverpid)
 {
 	int	byte;
 
 	byte = 7;
 	while (byte >= 0)
 	{
-		if (c_char >> byte & 1)
-			kill(i_pid, SIGUSR2);
+		if (c >> byte & 1)
+		{
+			if ((kill(serverpid, SIGUSR2)) == -1)
+				exit(EXIT_FAILURE);
+		}
 		else
-			kill(i_pid, SIGUSR1);
+		{
+			if ((kill(serverpid, SIGUSR1)) == -1)
+				exit(EXIT_FAILURE);
+		}
 		byte--;
-		usleep(1000);
+		pause();
 	}
 }
 
 int	main(int args, char **argv)
 {
-	int		i_pid;
-	char	*s_message;
+	int		serverpid;
+	char	*str;
 
 	if (args != 3)
 	{
 		ft_putstr("Usage: ./client [pid] [message]\n");
 		return (1);
 	}
-	i_pid = ft_atoi(argv[1]);
-	if (i_pid <= 0)
+	serverpid = ft_atoi(argv[1]);
+	if (serverpid <= 0)
 	{
 		ft_putstr("The pid seems strange !\n");
 		return (1);
 	}
-	s_message = argv[2];
-	while (*s_message != '\0')
-		ft_send_char_to_server(*s_message++, i_pid);
-	ft_send_char_to_server('\0', i_pid);
+	signal(SIGUSR1, handler);
+	signal(SIGUSR2, handler);
+	str = argv[2];
+	while (*str != '\0')
+		ft_send_char_to_server(*str++, serverpid);
+	ft_send_char_to_server('\0', serverpid);
 	return (0);
 }
