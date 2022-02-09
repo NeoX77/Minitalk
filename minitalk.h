@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 19:42:46 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/08 14:19:25 by wdebotte         ###   ########.fr       */
+/*   Created: 2022/02/09 12:01:18 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/02/09 13:57:35 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-void	ft_putstr(const char *str)
+# include "libft.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include <signal.h>
+
+typedef struct s_info
 {
-	if (str == NULL)
-		return ;
-	write(1, str, ft_strlen(str));
-}
+	int		serverpid;
+	char	*str;
+}	t_info;
+
+typedef struct s_vars
+{
+	int				received;
+	int				bytes;
+	char			*buffer;
+	unsigned char	uc;
+}	t_vars;
+
+#endif

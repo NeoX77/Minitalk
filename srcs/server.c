@@ -5,69 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/04 18:16:16 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/08 11:10:50 by wdebotte         ###   ########.fr       */
+/*   Created: 2022/02/09 12:17:48 by wdebotte          #+#    #+#             */
+/*   Updated: 2022/02/09 13:52:59 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <signal.h>
+#include "minitalk.h"
 
-static char	*ft_fill_buffer(char *buffer, char c)
+t_vars	g_svars;
+
+static void	*ft_fill_buffer(void)
 {
-	char	*tmp;
-	char	c_tmp[2];
+	char	*buffertmp;
+	char	ctmp[2];
 
-	if (buffer == NULL)
+	if (g_svars.buffer == NULL)
 	{
-		buffer = malloc(sizeof(char));
-		if (buffer == NULL)
+		g_svars.buffer = malloc(sizeof(char));
+		if (g_svars.buffer == NULL)
 			return (NULL);
-		buffer[0] = '\0';
+		g_svars.buffer[0] = '\0';
 	}
-	c_tmp[0] = c;
-	c_tmp[1] = '\0';
-	tmp = buffer;
-	buffer = ft_strjoin(tmp, c_tmp);
-	free(tmp);
-	return (buffer);
+	ctmp[0] = g_svars.uc;
+	ctmp[1] = '\0';
+	buffertmp = g_svars.buffer;
+	g_svars.buffer = ft_strjoin(buffertmp, ctmp);
+	free(buffertmp);
+	return (NULL);
 }
 
 static void	get_message(int signum, siginfo_t *info, void *context)
 {
-	static int				bytes = 0;
-	static unsigned char	uc = 0;
-	static char				*buffer;
-
 	(void)context;
-	uc |= (signum == SIGUSR2);
-	if (++bytes == 8)
+	g_svars.uc |= (signum == SIGUSR2);
+	if (++g_svars.bytes == 8)
 	{
-		bytes = 0;
-		buffer = ft_fill_buffer(buffer, uc);
-		if (uc == 0)
+		ft_fill_buffer();
+		if (g_svars.uc == 0)
 		{
-			ft_printf("%s\n", buffer);
-			free(buffer);
-			buffer = 0;
+			g_svars.received = 1;
+			ft_printf("%s\n", g_svars.buffer);
+			free(g_svars.buffer);
+			g_svars.buffer = 0;
 			if ((kill(info->si_pid, SIGUSR2)) == -1)
 				exit(EXIT_FAILURE);
 		}
-		uc = 0;
+		g_svars.bytes = 0;
+		g_svars.uc = 0;
 	}
 	else
-		uc <<= 1;
-	if ((kill(info->si_pid, SIGUSR1)) == -1)
-		exit(EXIT_FAILURE);
+		g_svars.uc <<= 1;
+	if (g_svars.received == 0)
+		kill(info->si_pid, SIGUSR1);
+	else
+		g_svars.received = 0;
 }
 
 int	main(void)
 {
 	struct sigaction	s_action;
 
-	ft_printf("Hi ! My pid is : %i. Try to send me a message !\n", getpid());
+	g_svars.received = 0;
+	g_svars.bytes = 0;
+	g_svars.uc = 0;
+	sigemptyset(&s_action.sa_mask);
+	ft_printf("Take my pid : %i, and send me a message !\n", getpid());
 	s_action.sa_sigaction = &get_message;
 	s_action.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &s_action, NULL);

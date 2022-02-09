@@ -6,12 +6,11 @@
 /*   By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/04 12:08:52 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/04 17:55:35 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/08 14:14:59 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdarg.h>
 
 static int	is_valid_arg(char c)
 {

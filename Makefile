@@ -6,7 +6,7 @@
 #    By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/25 13:51:08 by wdebotte          #+#    #+#              #
-#    Updated: 2022/02/07 10:48:53 by wdebotte         ###   ########.fr        #
+#    Updated: 2022/02/09 14:06:16 by wdebotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,15 +24,18 @@ SRCS_CLIENT	= srcs/client.c
 OBJS_SERVER	= ${SRCS_SERVER:.c=.o}
 OBJS_CLIENT	= ${SRCS_CLIENT:.c=.o}
 
+HEADER		= minitalk.h
+
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
-INCS		= -Ilibft/includes/
+INCS		= -Ilibft/includes/ -I.
 
 RM			= rm -rf
 MAKE		= make -C
 
 NORM		= norminette
 FLAGC		= -R CheckForbiddenSourceHeader
+FLAGH		= -R CheckDefine
 
 PATHLIBFT	= libft/
 LIBFT		= -L ${PATHLIBFT} -lft
@@ -64,5 +67,7 @@ re:			fclean all
 norminette:
 				@echo "${PREFIX}Checking norminette for ${GREEN}.c ${CYAN}files ..."
 				${NORM} ${FLAGC} ${SRCS_SERVER} ${SRCS_CLIENT}
+				@echo "${PREFIX}Checking norminette for ${GREEN}.h ${CYAN}file ..."
+				${NORM} ${FLAGH} ${HEADER}
 
 .PHONY:		all clean fclean re norminette
