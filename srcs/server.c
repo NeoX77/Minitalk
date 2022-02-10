@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 12:17:48 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/09 13:52:59 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/10 11:52:51 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_vars	g_svars;
 static void	*ft_fill_buffer(void)
 {
 	char	*buffertmp;
-	char	ctmp[2];
+	char	c[2];
 
 	if (g_svars.buffer == NULL)
 	{
@@ -26,10 +26,10 @@ static void	*ft_fill_buffer(void)
 			return (NULL);
 		g_svars.buffer[0] = '\0';
 	}
-	ctmp[0] = g_svars.uc;
-	ctmp[1] = '\0';
+	c[0] = g_svars.uc;
+	c[1] = '\0';
 	buffertmp = g_svars.buffer;
-	g_svars.buffer = ft_strjoin(buffertmp, ctmp);
+	g_svars.buffer = ft_strjoin(buffertmp, c);
 	free(buffertmp);
 	return (NULL);
 }
@@ -55,9 +55,9 @@ static void	get_message(int signum, siginfo_t *info, void *context)
 	}
 	else
 		g_svars.uc <<= 1;
-	if (g_svars.received == 0)
-		kill(info->si_pid, SIGUSR1);
-	else
+	if (g_svars.received == 0 && (kill(info->si_pid, SIGUSR1) == -1))
+		exit(EXIT_FAILURE);
+	else if (g_svars.received == 1)
 		g_svars.received = 0;
 }
 
