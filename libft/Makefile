@@ -6,7 +6,7 @@
 #    By: wdebotte <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 08:31:56 by wdebotte          #+#    #+#              #
-#    Updated: 2022/02/07 15:09:19 by wdebotte         ###   ########.fr        #
+#    Updated: 2022/02/10 16:40:33 by wdebotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -83,7 +83,7 @@ HEADERS		= headers/libft.h headers/ft_printf.h
 
 CC			= clang
 CFLAGS		= -Wall -Wextra -Werror
-INCS		= -I includes
+INCS		= -Iincludes/
 
 RM			= rm -rf
 

@@ -6,11 +6,20 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 11:59:52 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/09 13:35:50 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/10 15:47:16 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <signal.h>
+
+typedef struct s_info
+{
+	int		serverpid;
+	char	*str;
+}	t_info;
 
 t_info	g_sinfo;
 
