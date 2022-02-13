@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 12:17:48 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/10 16:38:21 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/13 12:27:12 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	ft_fill_buffer(void)
 	return (1);
 }
 
-static void	ft_check_pid(siginfo_t *info)
+static void	ft_check_infos(siginfo_t *info)
 {
 	if (g_svars.pid == 0 || g_svars.pid != info->si_pid)
 	{
@@ -59,10 +59,18 @@ static void	ft_check_pid(siginfo_t *info)
 	}
 }
 
+static void	close_server(int signum)
+{
+	(void)signum;
+	kill(g_svars.pid, SIGUSR2);
+	ft_printf("Good bye!\n");
+	exit(EXIT_SUCCESS);
+}
+
 static void	get_message(int signum, siginfo_t *info, void *context)
 {
 	(void)context;
-	ft_check_pid(info);
+	ft_check_infos(info);
 	g_svars.c |= (signum == SIGUSR2);
 	if (++g_svars.bytes == 8)
 	{
@@ -79,8 +87,8 @@ static void	get_message(int signum, siginfo_t *info, void *context)
 	}
 	else
 		g_svars.c <<= 1;
-	if (g_svars.received == 0 && (kill(info->si_pid, SIGUSR1) == -1))
-		exit(EXIT_FAILURE);
+	if (g_svars.received == 0)
+		kill(info->si_pid, SIGUSR1);
 	g_svars.received = 0;
 }
 
@@ -91,11 +99,12 @@ int	main(void)
 	g_svars.pid = 0;
 	g_svars.buffer = 0;
 	sigemptyset(&s_action.sa_mask);
-	ft_printf("Take my pid : %i, and send me a message !\n", getpid());
+	ft_printf("Take my pid : %i, and send me a message!\n", getpid());
 	s_action.sa_sigaction = &get_message;
 	s_action.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &s_action, NULL);
 	sigaction(SIGUSR2, &s_action, NULL);
+	signal(SIGINT, close_server);
 	while (1)
 		pause();
 	return (0);
