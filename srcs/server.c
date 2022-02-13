@@ -6,7 +6,7 @@
 /*   By: wdebotte <wdebotte@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 12:17:48 by wdebotte          #+#    #+#             */
-/*   Updated: 2022/02/13 12:27:12 by wdebotte         ###   ########.fr       */
+/*   Updated: 2022/02/13 18:06:42 by wdebotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ static void	ft_check_infos(siginfo_t *info)
 static void	close_server(int signum)
 {
 	(void)signum;
-	kill(g_svars.pid, SIGUSR2);
+	if (g_svars.pid)
+		kill(g_svars.pid, SIGUSR2);
 	ft_printf("Good bye!\n");
 	exit(EXIT_SUCCESS);
 }
