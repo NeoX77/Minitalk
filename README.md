@@ -31,4 +31,4 @@ On linux OS the unix signals are not put in a queue and to do this project we ha
 
 ## Score
 
-[![wdebotte's 42 FdF Score](https://badge42.vercel.app/api/v2/cl2zu1sil002509mf9zd91hy6/project/2451229)](https://github.com/JaeSeoKim/badge42)
+[![wdebotte's 42 minitalk Score](https://badge42.vercel.app/api/v2/cl2zu1sil002509mf9zd91hy6/project/2465540)](https://github.com/JaeSeoKim/badge42)
