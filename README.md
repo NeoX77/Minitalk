@@ -28,7 +28,3 @@ To send a message we have to translate all caracters one by one, because we can 
 On MacOS the signals are put in queue so we can just send signals in a loop to comunicate with the server.  
 
 On linux OS the unix signals are not put in a queue and to do this project we have to make a 'ping pong' with signals between the two process. The first which send a signal is the client, then the server, once the server receive a signal, it send in its turn a signal to the client to tell "It's okay, send me the next signal", this method is well recommendend to be sure that signals are not mixed.
-
-## Score
-
-[![wdebotte's 42 minitalk Score](https://badge42.vercel.app/api/v2/cl2zu1sil002509mf9zd91hy6/project/2465540)](https://github.com/JaeSeoKim/badge42)
